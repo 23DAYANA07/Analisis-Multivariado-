@@ -1,0 +1,10 @@
+### CLASE 04102022 ###
+## Scatterplot matrix 
+pairs(USairpollution, pch = ".", cex = 1.5)
+pairs(USairpollution, panel = function(x, y, ...){
+  points(x, y, ...)
+  abline(lm(y ~ x), col = "purple")
+},pch = ".", cex = 1.5)
+install.packages("psych")
+library(psych)
+pairs.panels(USairpollution, pch = ".", cex = 2, col = "blue")
