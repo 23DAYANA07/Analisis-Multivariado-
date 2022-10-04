@@ -1,0 +1,41 @@
+install.packages("MVA")
+library("MVA")
+demo("Ch-MVA")
+## Diagrama de dispersion
+mlab <- "Empresas manufactureras con 20 empleados o mas"
+plab <- "tamaÃ±o de la aplicaciÃ²n en miles de (censo 1970)"
+plot(popul ~ manu, data = USairpollution, xlab = mlab, ylab = plab)
+
+## Diagrama de caja de bivariados 
+rug(USairpollution$manu, side = 1)
+rug(USairpollution$popul, side = 2)
+
+## otro tipo de graficar densidad
+hist(USairpollution$manu, main="")
+boxplot(USairpollution$popul)
+layout(matrix(c(2, 0, 1, 3), nrow = 2, byrow= TRUE), widths = c(2, 1), heights = c(1, 2), respect = TRUE)
+
+xlim <- range(USairpollution$manu) *1.1
+xlim2 <- with(USairpollution, range(manu)) *1.1
+plot(popul ~ manu, data = USairpollution, cex.lab = 0.9, xlab = mlab, ylab = plab,type = "n",xlim)
+with(USairpollution, text(manu, popul, cex = 0.6, labels = abbreviate(row.names(USairpollution))))
+
+# diagrama de caja bivariado
+lab <- c("Chicago", "Detroit", "Cleveland", "Philadelphia", "Houston")
+outcity <- match(lab, rownames(USairpollution))
+x <- USairpollution[,c("manu","popul")]
+x
+bvbox(x, mtitle = "", xlab = mlab, ylab = plab)
+text(x$manu[outcity], x$popul[outcity], labels= lab, cex = 0.7, pos = c(2,2,4,2,2))
+
+## Correlación
+cor(USairpollution)
+with(USairpollution, cor(manu,popul))
+outcity1 <- match(c("Chicago", "Detroit", "Cleveland", "Philadelphia"), rownames(USairpollution))
+with(USairpollution, cor(manu[-outcity1],popul[-outcity1]))
+
+## Convexhull
+hull <- with(USairpollution, chull(manu,popul))
+with(USairpollution, plot(manu, popul, pch = 1, xlab = mlab, ylab = plab))
+with(USairpollution, polygon(manu[hull], popul[hull], density = 15, angle = 30))
+with(USairpollution, cor(manu[-hull],popul[-hull]))
