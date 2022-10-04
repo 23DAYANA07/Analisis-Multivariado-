@@ -1,0 +1,17 @@
+## EJERCICIO 1.1 (PÁG. 11)
+## GRAPHICAL TECHNIQUES 
+library(ggplot2)
+x1 <- c(3, 4, 2, 6, 8, 2, 5)
+x2 <- c(5, 5.5, 4, 7, 10, 5, 7.5)
+dat1 <- c(x1, x2)
+dat1
+plot(x1, x2)
+
+## EJERCICIO 1.2 (PÁG. 12)
+## GRAPHICAL TECHNIQUES 
+library(ggplot2)
+x1 <- c(5, 4, 6, 2, 2, 8, 3)
+x2 <- c(5, 5.5, 4, 7, 10, 5, 7.5)
+dat1 <- c(x1, x2)
+dat1
+plot(x1, x2)
